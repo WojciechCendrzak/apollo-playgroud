@@ -1,0 +1,11 @@
+/**/node_modules
+/e2e/cypress.env.json
+/e2e/cypress.json
+/e2e/cypress/screenshots
+/e2e/cypress/videos
+yarn-error.log
+
+
+# Redundant, see @lingoda/i18n
+# Putting this here because bazinga recreates translations directory.
+packages/translations/config.js
