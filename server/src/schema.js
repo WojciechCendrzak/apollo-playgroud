@@ -4,6 +4,11 @@ const typeDefs = gql`
   type Query {
     packages(sectionName: String!, currency: String!): [Package!]!
     classes(page: Int!, filter: String!): [Class!]!
+    purchase: Purchase!
+  }
+
+  type Mutation {
+    purchase(promoCode: String): Purchase!
   }
 
   type Class {
@@ -32,6 +37,12 @@ const typeDefs = gql`
   type Price {
     forHuman: String!
     currency: String!
+  }
+
+  type Purchase {
+    id: String!
+    price: Int!
+    description: String!
   }
 `;
 

@@ -32,6 +32,19 @@ const resolvers = {
         ];
       }
     },
+
+    purchase: (_, __, { dataSources }) => ({
+      id: "PRICE_1",
+      price,
+      description: "price description",
+    }),
+  },
+  Mutation: {
+    purchase: (_, { promoCode }, { dataSources }) => ({
+      id: "PRICE_1",
+      price: price + (promoCode ? 1 : 0),
+      description: "price description",
+    }),
   },
   Package: {
     curriculum: ({ curriculumId }, __, { dataSources }) => {
@@ -81,5 +94,7 @@ const getPage = (id, page, filter) => ({
   name: `class ${id}`,
   filter,
 });
+
+let price = 100;
 
 module.exports = resolvers;
