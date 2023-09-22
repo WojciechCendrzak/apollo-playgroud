@@ -1,5 +1,13 @@
 const resolvers = {
   Query: {
+    classes: (_, { page, filter }) => {
+      return [
+        getPage("1", page, filter),
+        getPage("2", page, filter),
+        getPage("3", page, filter),
+      ];
+    },
+
     packages: (_, { sectionName, currency }, { dataSources }) => {
       console.log({ sectionName, currency });
 
@@ -66,5 +74,12 @@ const resolvers = {
     },
   },
 };
+
+const getPage = (id, page, filter) => ({
+  id: `${page * 100}_${id}_${filter}`,
+  page,
+  name: `class ${id}`,
+  filter,
+});
 
 module.exports = resolvers;

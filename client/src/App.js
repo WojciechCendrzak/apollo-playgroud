@@ -42,8 +42,8 @@ function App() {
     <>
       <div>Packages:</div>
       <div>
-        {data.packages.map((p) => (
-          <div>{JSON.stringify(p, null, 2)}</div>
+        {data.packages.map((p, index) => (
+          <div key={index}>{JSON.stringify(p, null, 2)}</div>
         ))}
       </div>
       <div>

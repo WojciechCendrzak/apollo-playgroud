@@ -3,6 +3,14 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   type Query {
     packages(sectionName: String!, currency: String!): [Package!]!
+    classes(page: Int!, filter: String!): [Class!]!
+  }
+
+  type Class {
+    id: String!
+    page: Int!
+    name: String!
+    filter: String!
   }
 
   type Package {
