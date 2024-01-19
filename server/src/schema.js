@@ -58,18 +58,19 @@ const typeDefs = gql`
 
   type ChallengeStarted {
     challengeName: String!
-    # title: String!
+    title: String!
   }
 
   type ChallengePrizeAchieved {
     challengeName: String!
-    # value: Int!
+    value: Int!
+    prize: ChallengePrize!
   }
 
-  # type ChallengePrize {
-  #   name: String!
-  #   value: Int!
-  # }
+  type ChallengePrize {
+    name: String!
+    value: Int!
+  }
 
   type Goal {
     id: String!

@@ -9,15 +9,15 @@ export const NOTIFICATIONS = gql`
       payload {
         ... on ChallengeStarted {
           challengeName
-          # title
+          title
         }
         ... on ChallengePrizeAchieved {
           challengeName
-          # value
-          # prize {
-          #   name
-          #   value
-          # }
+          value
+          prize {
+            name
+            value
+          }
         }
       }
     }
