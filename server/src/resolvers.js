@@ -38,6 +38,31 @@ const resolvers = {
       price,
       description: "price description",
     }),
+
+    notifications: (_, __, { dataSources }) => {
+      console.log("notifications");
+
+      return [
+        {
+          id: "N_1",
+          type: "CHALLENGE_STARTED",
+          // payload: {
+            // challengeName: "challenge 1",
+          // },
+        },
+        {
+          id: "N_2",
+          type: "CHALLENGE_PRIZE_ACHIEVED",
+          // payload: {
+            // challengeName: "challenge 2",
+          //   price: {
+          //     name: "price 1",
+          //     value: 15,
+          //   },
+          // },
+        },
+      ];
+    },
   },
   Mutation: {
     purchase: (_, { promoCode }, { dataSources }) => ({
@@ -85,6 +110,46 @@ const resolvers = {
         name: sectionId === "S_1" ? "english" : "german",
       };
     },
+  },
+  // NotificationPayload: {
+  //   __resolveType: (obj, contextValue, info) => {
+  //     console.log("NotificationPayload", { obj, contextValue, info });
+  //     if (obj.type === "CHALLENGE_STARTED") {
+  //       return "ChallengeStarted";
+  //     }
+  //     // Only Book has a title field
+  //     if (obj.type === "CHALLENGE_PRIZE_ACHIEVED") {
+  //       return "ChallengePrizeAchieved";
+  //     }
+  //     return null; // GraphQLError is thrown
+  //   },
+  // },
+  ChallengeStarted: {
+    // challengeName: () => {
+    //   console.log("ChallengeStarted challengeName");
+
+    //   return "february-2024";
+    // },
+    challengeName: () => "february-2024",
+    // title: () => "title 1",
+    __isTypeOf: (obj) => {
+      console.log("__isTypeOf ChallengeStarted", obj);
+
+      return obj.type === "CHALLENGE_STARTED";
+    }
+  },
+  ChallengePrizeAchieved: {
+    challengeName: () => "february-2024",
+    // value: () => 15,
+    // prize: () => ({
+    //   name: "prize 1",
+    //   value: 15,
+    // }),
+    __isTypeOf: (obj) => {
+      console.log("__isTypeOf ChallengePrizeAchieved", obj);
+
+      return obj.type === "CHALLENGE_PRIZE_ACHIEVED";
+    }
   },
 };
 

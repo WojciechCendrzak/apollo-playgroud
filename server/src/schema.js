@@ -5,6 +5,7 @@ const typeDefs = gql`
     packages(sectionName: String!, currency: String!): [Package!]!
     classes(page: Int!, filter: String!): [Class!]!
     purchase: Purchase!
+    notifications: [Notifications!]!
   }
 
   type Mutation {
@@ -44,6 +45,30 @@ const typeDefs = gql`
     price: Int!
     description: String!
   }
+
+  type Notifications {
+    id: String!
+    type: String!
+    payload: NotificationPayload!
+  }
+
+  union NotificationPayload = ChallengeStarted | ChallengePrizeAchieved
+
+  type ChallengeStarted {
+    challengeName: String!
+    # title: String!
+  }
+
+  type ChallengePrizeAchieved {
+    challengeName: String!
+    # value: Int!
+  }
+
+  # type ChallengePrize {
+  #   name: String!
+  #   value: Int!
+  # }
+
 `;
 
 module.exports = typeDefs;
