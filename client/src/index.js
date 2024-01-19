@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 // import { AppClass } from "./AppClass";
 // import { AppPrice } from "./AppPrice";
-import { AppRefetchLoading } from "./AppRefetchLoading";
+import { AppGoal } from "./AppGoal";
 // import App from "./App";
 // import { ApolloProvider, ApolloClient } from "@apollo/client";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
@@ -37,7 +37,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ApolloProvider client={client}>
     {/* <AppClass /> */}
-    {/* <AppPrice /> */}
-    <AppRefetchLoading />
+    <AppGoal />
+    {/* <AppRefetchLoading /> */}
   </ApolloProvider>
 );

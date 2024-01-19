@@ -8,6 +8,13 @@ const resolvers = {
       ];
     },
 
+    goal: () => {
+      return {
+        id: "G_1",
+        value: goalDefault,
+      };
+    },
+
     packages: (_, { sectionName, currency }, { dataSources }) => {
       console.log({ sectionName, currency });
 
@@ -45,6 +52,15 @@ const resolvers = {
         id: getPurchaseId(),
         price: getPrice(promoCode),
         description: "price description",
+      };
+    },
+
+    setGoal: (_, { value }) => {
+      goalDefault = value;
+
+      return {
+        id: "G_1",
+        value: goalDefault,
       };
     },
   },
@@ -96,6 +112,8 @@ const getClass = (id, page, filter) => ({
   name: `class ${id}`,
   filter,
 });
+
+let goalDefault = 0;
 
 let PRICE = 100;
 

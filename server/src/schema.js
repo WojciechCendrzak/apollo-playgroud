@@ -5,10 +5,12 @@ const typeDefs = gql`
     packages(sectionName: String!, currency: String!): [Package!]!
     classes(page: Int!, filter: String!): [Class!]!
     purchase(promoCode: String): Purchase!
+    goal: Goal!
   }
 
   type Mutation {
     purchase(promoCode: String): Purchase!
+    setGoal(value: Int!): Goal!
   }
 
   type Class {
@@ -43,6 +45,11 @@ const typeDefs = gql`
     id: String!
     price: Int!
     description: String!
+  }
+
+  type Goal {
+    id: String!
+    value: Int!
   }
 `;
 
