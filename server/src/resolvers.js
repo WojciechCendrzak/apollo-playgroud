@@ -2,10 +2,17 @@ const resolvers = {
   Query: {
     classes: (_, { page, filter }) => {
       return [
-        getPage("1", page, filter),
-        getPage("2", page, filter),
-        getPage("3", page, filter),
+        getClass("1", page, filter),
+        getClass("2", page, filter),
+        getClass("3", page, filter),
       ];
+    },
+
+    goal: () => {
+      return {
+        id: "G_1",
+        value: goalDefault,
+      };
     },
 
     packages: (_, { sectionName, currency }, { dataSources }) => {
@@ -33,9 +40,9 @@ const resolvers = {
       }
     },
 
-    purchase: (_, __, { dataSources }) => ({
-      id: "PRICE_1",
-      price,
+    purchase: (_, { promoCode }, { dataSources }) => ({
+      id: getPurchaseId(),
+      price: getPrice(promoCode),
       description: "price description",
     }),
 
@@ -65,11 +72,22 @@ const resolvers = {
     },
   },
   Mutation: {
-    purchase: (_, { promoCode }, { dataSources }) => ({
-      id: "PRICE_1",
-      price: price + (promoCode ? 1 : 0),
-      description: "price description",
-    }),
+    purchase: (_, { promoCode }, { dataSources }) => {
+      return {
+        id: getPurchaseId(),
+        price: getPrice(promoCode),
+        description: "price description",
+      };
+    },
+
+    setGoal: (_, { value }) => {
+      goalDefault = value;
+
+      return {
+        id: "G_1",
+        value: goalDefault,
+      };
+    },
   },
   Package: {
     curriculum: ({ curriculumId }, __, { dataSources }) => {
@@ -153,13 +171,40 @@ const resolvers = {
   },
 };
 
-const getPage = (id, page, filter) => ({
+const getClass = (id, page, filter) => ({
   id: `${page * 100}_${id}_${filter}`,
   page,
   name: `class ${id}`,
   filter,
 });
 
-let price = 100;
+let goalDefault = 0;
+
+let PRICE = 100;
+
+let uid = 0;
+const getPurchaseId = () => {
+  uid++;
+
+  return `ID_${uid}`;
+};
+
+const getPrice = (promoCode) => {
+  let discount = 0;
+
+  switch (promoCode) {
+    case "PROMO_CODE_1":
+      discount = 1;
+      break;
+    case "PROMO_CODE_2":
+      discount = 2;
+      break;
+    default:
+      discount = 0;
+      break;
+  }
+
+  return PRICE + discount;
+};
 
 module.exports = resolvers;

@@ -4,12 +4,14 @@ const typeDefs = gql`
   type Query {
     packages(sectionName: String!, currency: String!): [Package!]!
     classes(page: Int!, filter: String!): [Class!]!
-    purchase: Purchase!
+    purchase(promoCode: String): Purchase!
+    goal: Goal!
     notifications: [Notifications!]!
   }
 
   type Mutation {
     purchase(promoCode: String): Purchase!
+    setGoal(value: Int!): Goal!
   }
 
   type Class {
@@ -69,6 +71,10 @@ const typeDefs = gql`
   #   value: Int!
   # }
 
+  type Goal {
+    id: String!
+    value: Int!
+  }
 `;
 
 module.exports = typeDefs;

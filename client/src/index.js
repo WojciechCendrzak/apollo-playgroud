@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import { AppClass } from "./AppClass";
-import { AppPrice } from "./AppPrice";
+// import { AppPrice } from "./AppPrice";
+// import { AppGoal } from "./AppGoal";
 import { AppNotifications } from "./AppNotifications";
 // import App from "./App";
 // import { ApolloProvider, ApolloClient } from "@apollo/client";
@@ -38,6 +39,7 @@ root.render(
   <ApolloProvider client={client}>
     {/* <AppClass /> */}
     {/* <AppPrice /> */}
+    {/* <AppGoal /> */}
     <AppNotifications/>
   </ApolloProvider>
 );
