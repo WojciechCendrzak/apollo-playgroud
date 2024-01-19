@@ -4,7 +4,7 @@ const typeDefs = gql`
   type Query {
     packages(sectionName: String!, currency: String!): [Package!]!
     classes(page: Int!, filter: String!): [Class!]!
-    purchase: Purchase!
+    purchase(promoCode: String): Purchase!
   }
 
   type Mutation {
