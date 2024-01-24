@@ -18,13 +18,15 @@ export const PACKAGES = gql`
   }
 `;
 
-function App() {
+export const Packages = () => {
   const [sectionName, setSectionName] = useState("english");
   const [currency, setCurrency] = useState("USD");
   console.log("query");
   const { loading, error, data } = useQuery(PACKAGES, {
     variables: { sectionName, currency },
   });
+  // when using second time with different variables it will call the query again
+  useQuery(PACKAGES, { variables: { sectionName: "german", currency } });
   console.log("called");
 
   if (loading) {
@@ -40,7 +42,7 @@ function App() {
 
   return (
     <>
-      <div>Packages:</div>
+      <h1>Packages</h1>
       <div>
         {data.packages.map((p, index) => (
           <div key={index}>{JSON.stringify(p, null, 2)}</div>
@@ -56,6 +58,4 @@ function App() {
       </div>
     </>
   );
-}
-
-export default App;
+};

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 // import { AppPrice } from "./AppPrice";
 // import { AppGoal } from "./AppGoal";
 import { AppNotifications } from "./AppNotifications";
-// import App from "./App";
+import { Packages } from "./Packages";
 // import { ApolloProvider, ApolloClient } from "@apollo/client";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
@@ -37,9 +37,10 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ApolloProvider client={client}>
+    <Packages />
     {/* <AppClass /> */}
     {/* <AppPrice /> */}
     {/* <AppGoal /> */}
-    <AppNotifications/>
+    <AppNotifications />
   </ApolloProvider>
 );

@@ -37,7 +37,7 @@ export const AppNotifications = () => {
 
   return (
     <>
-      <div>Notifications:</div>
+      <h1>Notifications</h1>
       <div>
         {data.notifications.map((p, index) => (
           <div key={index}>{JSON.stringify(p, null, 2)}</div>

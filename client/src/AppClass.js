@@ -52,6 +52,7 @@ export const AppClass = () => {
 
   return (
     <>
+      <h1>Class</h1>
       <div>Filters:</div>
       <div>
         {JSON.stringify({ filter, lastPage: getLastPage(classes) }, null, 2)}
